@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>View book | Home</title>
+  </head>
+  <style>
+    h1 {text-align: center;}
+    h2 {text-align: center;}
+    a {color: white;}
+    nav {
+      background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=628&q=80);
+    }
+    body {
+      background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=628&q=80);
+      margin-top: 10px;
+      color: white;
+    }
+    th, td {
+      color: white;
+    }
+    .nav-area {
+    float: right;
+    list-style: none;
+    margin-top: 30px;
+    }
+    .nav-area li {
+        display: inline-block;
+    }
+    .nav-area li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: poppins;
+    font-size: 16px;
+    text-transform: uppercase;
+    }
+    .nav-area li a:hover {
+    background: #fff;
+    color: #333;
+    }
+    .head {
+      margin-top: 30px;
+    }
+    .footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: none;
+  z-index: 9999;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+  <body>
+    <ul class="nav-area">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/add-book">Add Book</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/developer">Developer</a></li>
+    </ul>
+
+    <div class="container">
+      <h1 class="head">Book Record Management</h1>
+      <h2 class="mt-2">All Books</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Index</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in books %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{i.title}}</td>
+            <td>{{i.author}}</td>
+            <td>{{i.price}}</td>
+            <td>
+              <a href="/edit-book?bookid={{i.id}}"><button type="button" class="btn btn-primary">Update</button></a>
+              <a href="/delete-book?bookid={{i.id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer" id="footer">
+      <a href="#top"><button type="button" class="btn btn-success">Go to top</button></a>
+      
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+      window.addEventListener('scroll', function() {
+        var footer = document.getElementById('footer');
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+          footer.style.display = 'block';
+        } else {
+          footer.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
